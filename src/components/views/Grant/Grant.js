@@ -13,6 +13,7 @@ export default class Grant extends Component {
 			becaGalicia: false,
 			becaAndalucia: false,
 			name: null,
+			loading: true,
 			error: false
 		}
 	}
@@ -31,6 +32,10 @@ export default class Grant extends Component {
 		this.allowedUsersService
 			.getAllUsers()
 			.then(users => {
+				this.setState({
+					...this.state,
+					loading: false
+				})
 				users.data.map(
 					elm => elm.email.toLowerCase() === email.toLowerCase() && this.setState({ name: elm.name })
 				)
@@ -80,71 +85,77 @@ export default class Grant extends Component {
 	render() {
 		return (
 			<Container>
-				{!this.state.error ? (
-					<div>
-						<h1 className='mb-5'>
-							Aquí tienes tus becas: <br /> {this.state.name}
-						</h1>
-						<div className='row justify-content-center'>
-							<div className='col-10  grant-cards mb-5'>
-								<h5>Becas escolares curso 2021 -2022 primer ciclo educación infantil.</h5>
-								{this.state.becaMadrid ? (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center apto'>apto</span>
-									</div>
-								) : (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center no-apto'>no apto</span>
-									</div>
-								)}
-							</div>
-							<div className='col-10  grant-cards mb-5'>
-								<h5>
-									Becas para el estudio de Programas de Segunda Oportunidad, correspondiente al curso
-									2021-2022
-								</h5>
-								{this.state.becaCataluña ? (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center apto'>apto</span>
-									</div>
-								) : (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center no-apto'>no apto</span>
-									</div>
-								)}
-							</div>
-							<div className='col-10  grant-cards mb-5'>
-								<h5>
-									Subvenciones de comedor en los centros docentes públicos no universitarios para el
-									curso escolar 2021-2022.
-								</h5>
-								{this.state.becaGalicia ? (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center apto'>apto</span>
-									</div>
-								) : (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center no-apto'>no apto</span>
-									</div>
-								)}
-							</div>
-							<div className='col-10  grant-cards mb-5'>
-								<h5>MEC</h5>
-								{this.state.becaAndalucia ? (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center apto'>apto</span>
-									</div>
-								) : (
-									<div className='text-center mb-4 mt-4'>
-										<span className='text-center no-apto'>no apto</span>
-									</div>
-								)}
-							</div>
-						</div>
-					</div>
+				{this.state.loading ? (
+					<h1>loading...</h1>
 				) : (
 					<div>
-						<h1>Lo sentimos, tu correo no aparece en nuestra base de datos. Comprueba tus datos</h1>
+						{!this.state.error ? (
+							<div>
+								<h1 className='mb-5'>
+									Aquí tienes tus becas: <br /> {this.state.name}
+								</h1>
+								<div className='row justify-content-center'>
+									<div className='col-10  grant-cards mb-5'>
+										<h5>Becas escolares curso 2021 -2022 primer ciclo educación infantil.</h5>
+										{this.state.becaMadrid ? (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center apto'>apto</span>
+											</div>
+										) : (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center no-apto'>no apto</span>
+											</div>
+										)}
+									</div>
+									<div className='col-10  grant-cards mb-5'>
+										<h5>
+											Becas para el estudio de Programas de Segunda Oportunidad, correspondiente
+											al curso 2021-2022
+										</h5>
+										{this.state.becaCataluña ? (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center apto'>apto</span>
+											</div>
+										) : (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center no-apto'>no apto</span>
+											</div>
+										)}
+									</div>
+									<div className='col-10  grant-cards mb-5'>
+										<h5>
+											Subvenciones de comedor en los centros docentes públicos no universitarios
+											para el curso escolar 2021-2022.
+										</h5>
+										{this.state.becaGalicia ? (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center apto'>apto</span>
+											</div>
+										) : (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center no-apto'>no apto</span>
+											</div>
+										)}
+									</div>
+									<div className='col-10  grant-cards mb-5'>
+										<h5>MEC</h5>
+										{this.state.becaAndalucia ? (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center apto'>apto</span>
+											</div>
+										) : (
+											<div className='text-center mb-4 mt-4'>
+												<span className='text-center no-apto'>no apto</span>
+											</div>
+										)}
+									</div>
+								</div>
+							</div>
+						) : (
+							<div>
+								<h1>Lo sentimos, tu correo no aparece en nuestra base de datos. Comprueba tus datos</h1>
+							</div>
+						)}
 					</div>
 				)}
 			</Container>
