@@ -1,0 +1,17 @@
+.grant-cards{
+    box-shadow: 0px 15px 30px rgba(76, 84, 200, 0.1);
+}
+
+.no-apto{
+    background-color: rgba(254, 151, 5, .2);
+    border-radius: 0.3rem;
+    padding: .3rem 1.3rem;
+    color: rgba(254, 151, 5, 1);
+}
+
+.apto{
+    background-color: rgba(21, 160, 32, 0.2);
+    border-radius: 0.3rem;
+    padding: .3rem 1.3rem;
+    color: rgba(21, 160, 32, 1)
+}

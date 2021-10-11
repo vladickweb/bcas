@@ -1,0 +1,25 @@
+.custom-form-date{
+    width: 3.5rem;
+    margin-right: 2rem;
+}
+
+.custom-form-date-year{
+    width: 4.5rem;
+}
+
+.custom-form{
+    background-color: rgba(247, 249, 251, 1);
+    border: none;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+}
+
+.custom-button{
+    background-color: #4F6DE2 !important;
+    border: none;
+}
+
+.title-info{
+    font-weight: 600;
+    font-size: x-large;
+}

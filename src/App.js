@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import './App.css'
+import React, { Component } from 'react'
+import Routes from './components/Routes/Routes'
+import Navigation from './components/layout/Navigation'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+	constructor() {
+		super()
+		this.state = {
+			currentUserData: null,
+			currentUserEmail: null
+		}
+	}
+
+	updateUserData = user =>
+		this.setState({
+			...this.state,
+			currentUserData: user
+		})
+
+	updateUserEmail = user => {
+		this.setState({
+			...this.state,
+			currentUserEmail: user
+		})
+	}
+
+	render() {
+		return (
+			<div>
+				<Navigation />
+				<Routes
+					currentUserData={(this.state.currentUserData)}
+					currentUserEmail={(this.state.currentUserEmail)}
+					updateUserData={this.updateUserData}
+					updateUserEmail={this.updateUserEmail}
+				/>
+			</div>
+		)
+	}
 }
-
-export default App;
